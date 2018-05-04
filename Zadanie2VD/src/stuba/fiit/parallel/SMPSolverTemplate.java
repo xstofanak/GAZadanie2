@@ -36,7 +36,8 @@ abstract class SMPSolverTemplate implements SMPSolver {
             // join
             return doJoinJob(dividedPairs);
         } else {
-            return pairs;
+            Set<Set<Pair<Entity, Entity>>> singletonSet = new HashSet<>(Collections.singletonList(pairs));
+            return doJoinJob(singletonSet);
         }
     }
 
@@ -59,6 +60,9 @@ abstract class SMPSolverTemplate implements SMPSolver {
             } else {
                 index++;
             }
+        }
+        if(!runningSet.isEmpty()) {
+            finalSet.add(runningSet);
         }
         return finalSet;
     }

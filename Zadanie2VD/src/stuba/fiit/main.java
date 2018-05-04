@@ -1,17 +1,13 @@
 package stuba.fiit;
 
 import stuba.fiit.entity.Boss;
+import stuba.fiit.entity.Entity;
+import stuba.fiit.entity.Pair;
 import stuba.fiit.entity.Worker;
+import stuba.fiit.parallel.SMPSolver;
+import stuba.fiit.parallel.SMPSolverBoss;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Main {
 
@@ -97,8 +93,7 @@ public class Main {
 		ArrayList<Boss>  bosses = null;
 		ArrayList<Worker> workers = null;
 		ArrayList<Integer> priorityHelper = null;
-		Boss bossHelper = null;
-		Worker workerHelper = null;
+		;
 		
 		//enter input
 		Scanner scannerForInput = new Scanner(System.in);
@@ -109,11 +104,12 @@ public class Main {
 		//create and generate bosses and workers
 		bosses = new ArrayList<Boss>();
 		workers = new ArrayList<Worker>();
-		bossHelper = new Boss();
-		workerHelper = new Worker();
 		
 		for(int i = 0; i < numberOfN; i++ ) {
-			
+            // initialization
+		    Boss bossHelper = new Boss();
+            Worker workerHelper = new Worker();
+
 			//set bossHelper for adding it to arraylist
 			//set id
 			bossHelper.setID(i);
@@ -139,9 +135,19 @@ public class Main {
 			bosses.add(bossHelper);
 			workers.add(workerHelper);
 		}
-		
-		//example
-		Map<String, String> matches = match(guys, guyPrefers, girlPrefers);
+
+		// test
+        SMPSolver smpSolver = new SMPSolverBoss(new HashSet<>(workers), new HashSet<>(bosses), 2);
+        Set<Pair<Entity, Entity>> stablePairs = smpSolver.findStablePairs();
+        stablePairs.stream()
+                .sorted(Comparator.comparingInt(o -> o.getxElement().getID()))
+                .forEachOrdered(entityEntityPair -> {
+                    System.out.println("Boss: " + entityEntityPair.getxElement().getID() + " - "
+                            + "Worker: " + entityEntityPair.getyElement().getID());
+                });
+
+        //example
+		/*Map<String, String> matches = match(guys, guyPrefers, girlPrefers);
         for(Map.Entry<String, String> couple:matches.entrySet()){
             System.out.println(
                     couple.getKey() + " is engaged to " + couple.getValue());
@@ -160,7 +166,7 @@ public class Main {
             System.out.println("Marriages are stable");
         }else{
             System.out.println("Marriages are unstable");
-        }
+        }*/
 	}
 
     private static Map<String, String> match(List<String> guys,

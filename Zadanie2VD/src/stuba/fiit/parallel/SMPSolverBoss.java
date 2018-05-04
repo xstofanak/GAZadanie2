@@ -8,8 +8,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class SMPSolverBoss extends SMPSolverTemplate {
-    public SMPSolverBoss(int capacity, Set<Worker> workerSet, Set<Boss> bossSet) {
-        super(capacity, workerSet, bossSet);
+    public SMPSolverBoss(Set<Worker> workerSet, Set<Boss> bossSet, int divideFactor) {
+        super(workerSet, bossSet, divideFactor);
     }
 
     @Override
@@ -25,6 +25,6 @@ public class SMPSolverBoss extends SMPSolverTemplate {
 
     @Override
     Entity findEntityByIndex(int index) {
-        return findBossByIndex(index);
+        return findWorkerByIndex(index);
     }
 }
