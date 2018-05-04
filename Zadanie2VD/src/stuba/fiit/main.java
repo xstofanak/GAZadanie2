@@ -1,5 +1,8 @@
 package stuba.fiit;
 
+import stuba.fiit.entity.Boss;
+import stuba.fiit.entity.Worker;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -7,11 +10,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-public class main {
+public class Main {
 
 	static List<String> guys = Arrays.asList(
             new String[]{
@@ -92,11 +94,11 @@ public class main {
 		
 		//variables
 		int numberOfN = 0;
-		ArrayList<boss>  bosses = null;
-		ArrayList<worker> workers = null;
+		ArrayList<Boss>  bosses = null;
+		ArrayList<Worker> workers = null;
 		ArrayList<Integer> priorityHelper = null;
-		boss bossHelper = null;
-		worker workerHelper = null;
+		Boss bossHelper = null;
+		Worker workerHelper = null;
 		
 		//enter input
 		Scanner scannerForInput = new Scanner(System.in);
@@ -105,10 +107,10 @@ public class main {
 		scannerForInput.close();
 		
 		//create and generate bosses and workers
-		bosses = new ArrayList<boss>();
-		workers = new ArrayList<worker>();
-		bossHelper = new boss();
-		workerHelper = new worker();
+		bosses = new ArrayList<Boss>();
+		workers = new ArrayList<Worker>();
+		bossHelper = new Boss();
+		workerHelper = new Worker();
 		
 		for(int i = 0; i < numberOfN; i++ ) {
 			
@@ -133,7 +135,7 @@ public class main {
 			}
 			workerHelper.setLinearPriority(priorityHelper);
 			
-			//add worker and boss to arraylist
+			//add Worker and Boss to arraylist
 			bosses.add(bossHelper);
 			workers.add(workerHelper);
 		}
