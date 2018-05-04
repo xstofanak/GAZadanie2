@@ -1,69 +1,19 @@
 package stuba.fiit;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class main {
 
-	
-	
-	public static void main(String[] args) {
-		
-		//stable marriage problem
-		
-		//variables
-		int numberOfN = 0;
-		ArrayList<boss>  bosses = null;
-		ArrayList<worker> workers = null;
-		ArrayList<Integer> priorityHelper = null;
-		boss bossHelper = null;
-		worker workerHelper = null;
-		
-		//enter input
-		Scanner scannerForInput = new Scanner(System.in);
-		System.out.println("Enter a number of n: ");
-		numberOfN = scannerForInput.nextInt();
-		scannerForInput.close();
-		
-		//create and generate bosses and workers
-		bosses = new ArrayList<boss>();
-		workers = new ArrayList<worker>();
-		bossHelper = new boss();
-		workerHelper = new worker();
-		
-		for(int i = 0; i < numberOfN; i++ ) {
-			
-			//set bossHelper for adding it to arraylist
-			//set id
-			bossHelper.setID(i);
-			//set random linearPriority
-			priorityHelper = new ArrayList<Integer>();
-			for(int j = 0; j < numberOfN; j++ ) {
-				priorityHelper.add(j + numberOfN);
-				Collections.shuffle(priorityHelper);
-			}
-			bossHelper.setLinearPriority(priorityHelper);
-			//set workerHelper for adding it to arraylist
-			//set id
-			workerHelper.setID(i + numberOfN);
-			//set random linearPriority
-			priorityHelper = new ArrayList<Integer>();
-			for(int j = 0; j < numberOfN; j++ ) {
-				priorityHelper.add(j);
-				Collections.shuffle(priorityHelper);
-			}
-			workerHelper.setLinearPriority(priorityHelper);
-			
-			//add worker and boss to arraylist
-			bosses.add(bossHelper);
-			workers.add(workerHelper);
-		}
-	}
-	
-	//Example of SMP problem
-	/*static List<String> guys = Arrays.asList(
+	static List<String> guys = Arrays.asList(
             new String[]{
         "abe", "bob", "col", "dan", "ed", "fred", "gav", "hal", "ian", "jon"});
     static List<String> girls = Arrays.asList(
@@ -135,8 +85,61 @@ public class main {
             Arrays.asList("ed", "hal", "gav", "abe", "bob", "jon", "col",
             "ian", "fred", "dan"));
     }};
-    public static void main(String[] args){
-        Map<String, String> matches = match(guys, guyPrefers, girlPrefers);
+	
+	public static void main(String[] args) {
+		
+		//stable marriage problem
+		
+		//variables
+		int numberOfN = 0;
+		ArrayList<boss>  bosses = null;
+		ArrayList<worker> workers = null;
+		ArrayList<Integer> priorityHelper = null;
+		boss bossHelper = null;
+		worker workerHelper = null;
+		
+		//enter input
+		Scanner scannerForInput = new Scanner(System.in);
+		System.out.println("Enter a number of n: ");
+		numberOfN = scannerForInput.nextInt();
+		scannerForInput.close();
+		
+		//create and generate bosses and workers
+		bosses = new ArrayList<boss>();
+		workers = new ArrayList<worker>();
+		bossHelper = new boss();
+		workerHelper = new worker();
+		
+		for(int i = 0; i < numberOfN; i++ ) {
+			
+			//set bossHelper for adding it to arraylist
+			//set id
+			bossHelper.setID(i);
+			//set random linearPriority
+			priorityHelper = new ArrayList<Integer>();
+			for(int j = 0; j < numberOfN; j++ ) {
+				priorityHelper.add(j + numberOfN);
+				Collections.shuffle(priorityHelper);
+			}
+			bossHelper.setLinearPriority(priorityHelper);
+			//set workerHelper for adding it to arraylist
+			//set id
+			workerHelper.setID(i + numberOfN);
+			//set random linearPriority
+			priorityHelper = new ArrayList<Integer>();
+			for(int j = 0; j < numberOfN; j++ ) {
+				priorityHelper.add(j);
+				Collections.shuffle(priorityHelper);
+			}
+			workerHelper.setLinearPriority(priorityHelper);
+			
+			//add worker and boss to arraylist
+			bosses.add(bossHelper);
+			workers.add(workerHelper);
+		}
+		
+		//example
+		Map<String, String> matches = match(guys, guyPrefers, girlPrefers);
         for(Map.Entry<String, String> couple:matches.entrySet()){
             System.out.println(
                     couple.getKey() + " is engaged to " + couple.getValue());
@@ -156,8 +159,8 @@ public class main {
         }else{
             System.out.println("Marriages are unstable");
         }
-    }
- 
+	}
+
     private static Map<String, String> match(List<String> guys,
             Map<String, List<String>> guyPrefers,
             Map<String, List<String>> girlPrefers){
@@ -238,5 +241,5 @@ public class main {
             }
         }
         return true;
-    }*/
+    }
 }
