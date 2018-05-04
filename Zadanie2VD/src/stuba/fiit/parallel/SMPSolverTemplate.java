@@ -46,8 +46,6 @@ abstract class SMPSolverTemplate implements SMPSolver {
         Set<Set<Pair<Entity, Entity>>> finalSet = new HashSet<>();
         // number of entries in one set
         int count = pairs.size() / divideFactor;
-        // set of results
-        Set<Set<Pair<Entity, Entity>>> result = new HashSet<>();
         // iteration
         int index = 0;
         Set<Pair<Entity, Entity>> runningSet = new HashSet<>();
